@@ -4,7 +4,7 @@ import { pool } from "../database"
 
 const router = express.Router()
 
-router.post("/", async (req, res) => {
+router.post("/boards", async (req, res) => {
    try {
       const { boardName } = req.body
       const newBoardId = uuidv4()
@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
 })
 
 // DELETE A BOARD
-router.delete("/:id", async (req, res) => {
+router.delete("/boards/:id", async (req, res) => {
    try {
       const { id } = req.params
 
@@ -54,7 +54,7 @@ router.delete("/:id", async (req, res) => {
 })
 
 // EDIT A BOARD
-router.patch("/:id", async (req, res) => {
+router.patch("/boards/:id", async (req, res) => {
    try {
       const { id } = req.params
       const { boardName } = req.body
@@ -84,7 +84,7 @@ router.patch("/:id", async (req, res) => {
 })
 
 // GET ALL BOARDS
-router.get("/", async (_req, res) => {
+router.get("/boards", async (_req, res) => {
    try {
       const result = await pool.query("SELECT * FROM boards_list")
       const boards = result.rows

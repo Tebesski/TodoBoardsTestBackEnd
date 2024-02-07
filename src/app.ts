@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(cors())
 app.use(morgan("dev"))
 
-app.use("/api/boards", boardsRoutes)
-app.use("/api/cards", cardsRoutes)
+app.use("/api", boardsRoutes)
+app.use("/api", cardsRoutes)
 
 export default app

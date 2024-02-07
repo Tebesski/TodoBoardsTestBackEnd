@@ -4,7 +4,7 @@ import { pool } from "../database"
 
 const router = express.Router()
 
-router.get("/", async (req, res) => {
+router.get("/cards", async (req, res) => {
    try {
       const result = await pool.query("SELECT * FROM cards")
       const cards = result.rows
@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
 })
 
 // GET CARD BY ID:
-router.get("/:id", async (req, res) => {
+router.get("/cards/:id", async (req, res) => {
    try {
       const { id } = req.params
 
@@ -40,7 +40,7 @@ router.get("/:id", async (req, res) => {
 })
 
 // ADD NEW CARD:
-router.post("/", async (req, res) => {
+router.post("/cards", async (req, res) => {
    try {
       const { title, content, status, board_id } = req.body
       const id = uuidv4()
@@ -60,7 +60,7 @@ router.post("/", async (req, res) => {
 })
 
 // EDIT CARD TITLE
-router.patch("/:id/title", async (req, res) => {
+router.patch("/cards/:id/title", async (req, res) => {
    try {
       const { id } = req.params
       const { title } = req.body
@@ -77,7 +77,7 @@ router.patch("/:id/title", async (req, res) => {
 })
 
 // CHANGE CARD STATUS
-router.patch("/:id/status", async (req, res) => {
+router.patch("/cards/:id/status", async (req, res) => {
    try {
       const { id } = req.params
       const { status } = req.body
@@ -95,7 +95,7 @@ router.patch("/:id/status", async (req, res) => {
 })
 
 // EDIT CARD CONTENT
-router.patch("/:id/content", async (req, res) => {
+router.patch("/cards/:id/content", async (req, res) => {
    try {
       const { id } = req.params
       const { content } = req.body
@@ -114,7 +114,7 @@ router.patch("/:id/content", async (req, res) => {
 })
 
 // GET CARDS FOR SPECIFIC BOARD
-router.get("/:boardId/cards", async (req, res) => {
+router.get("/boards/:boardId/cards", async (req, res) => {
    try {
       const { boardId } = req.params
       const { rows } = await pool.query(
@@ -129,7 +129,7 @@ router.get("/:boardId/cards", async (req, res) => {
 })
 
 // COUNT CARDS FOR SPECIFIC BOARD
-router.get("/:boardId/cards-count", async (req, res) => {
+router.get("boards/:boardId/cards-count", async (req, res) => {
    try {
       const { boardId } = req.params
       const cardsCountByBoard = await pool.query(
@@ -144,7 +144,7 @@ router.get("/:boardId/cards-count", async (req, res) => {
 })
 
 // DELETE A CARD
-router.delete("/:boardId/cards/:cardId", async (req, res) => {
+router.delete("boards/:boardId/cards/:cardId", async (req, res) => {
    try {
       const { boardId, cardId } = req.params
 
