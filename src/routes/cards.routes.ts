@@ -129,7 +129,7 @@ router.get("/boards/:boardId/cards", async (req, res) => {
 })
 
 // COUNT CARDS FOR SPECIFIC BOARD
-router.get("boards/:boardId/cards-count", async (req, res) => {
+router.get("/boards/:boardId/cards-count", async (req, res) => {
    try {
       const { boardId } = req.params
       const cardsCountByBoard = await pool.query(
@@ -144,7 +144,7 @@ router.get("boards/:boardId/cards-count", async (req, res) => {
 })
 
 // DELETE A CARD
-router.delete("boards/:boardId/cards/:cardId", async (req, res) => {
+router.delete("/boards/:boardId/cards/:cardId", async (req, res) => {
    try {
       const { boardId, cardId } = req.params
 
